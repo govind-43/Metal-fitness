@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Metal Fit Gym — premium fitness training in Sector 21C, Faridabad. Train harder, move stronger, become your strongest self." />
+  <title>The Metal Fit Gym | Sector 21C, Faridabad</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#080808;
+      --bg2:#101010;
+      --panel:#151515;
+      --text:#f6f4ef;
+      --muted:#a7a7a7;
+      --line:rgba(255,255,255,.10);
+      --accent:#ff4b2b;
+      --accent2:#ff8a3d;
+      --white:#fff;
+      --max:1200px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:Inter,system-ui,sans-serif;
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    img{display:block;width:100%;object-fit:cover}
+    button,input,textarea{font:inherit}
+    .container{width:min(calc(100% - 40px),var(--max));margin:auto}
+
+    /* NAV */
+    .nav{
+      position:fixed;top:0;left:0;width:100%;z-index:1000;
+      background:rgba(8,8,8,.76);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(255,255,255,.07);
+    }
+    .nav-inner{height:78px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand-mark{
+      width:38px;height:38px;display:grid;place-items:center;
+      background:var(--accent);color:#080808;
+      font-weight:900;font-family:"Barlow Condensed";font-size:24px;
+      transform:skew(-8deg);
+    }
+    .brand-text{line-height:1}
+    .brand-text strong{
+      display:block;font-family:"Barlow Condensed";font-size:23px;
+      letter-spacing:1.5px;text-transform:uppercase
+    }
+    .brand-text span{
+      display:block;color:#888;font-size:9px;letter-spacing:3px;margin-top:3px;text-transform:uppercase
+    }
+    .nav-links{display:flex;gap:28px;align-items:center}
+    .nav-links a{font-size:13px;color:#bbb;font-weight:600;transition:.25s}
+    .nav-links a:hover{color:#fff}
+    .nav-cta{
+      padding:11px 17px;border:1px solid rgba(255,255,255,.18);
+      background:#fff;color:#090909;font-weight:800;font-size:12px;
+      text-transform:uppercase;letter-spacing:.6px;
+    }
+    .menu-btn{display:none;background:none;border:0;color:#fff;font-size:28px}
+
+    /* HERO */
+    .hero{
+      min-height:100vh;position:relative;display:flex;align-items:center;
+      isolation:isolate;background:#090909;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";position:absolute;inset:0;z-index:-3;
+      background:
+        linear-gradient(90deg,rgba(4,4,4,.97) 0%,rgba(4,4,4,.83) 42%,rgba(4,4,4,.35) 75%,rgba(4,4,4,.62) 100%),
+        url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=2200&q=88") center/cover;
+      filter:saturate(.82);
+    }
+    .hero::after{
+      content:"";position:absolute;inset:auto -10% -30% 30%;height:70%;
+      z-index:-2;background:radial-gradient(circle,rgba(255,75,43,.25),transparent 65%);
+      filter:blur(35px);
+    }
+    .hero-content{padding:150px 0 80px;max-width:720px}
+    .eyebrow{
+      display:flex;align-items:center;gap:10px;
+      color:var(--accent2);font-size:11px;letter-spacing:3px;
+      text-transform:uppercase;font-weight:800;margin-bottom:20px;
+    }
+    .eyebrow::before{content:"";width:38px;height:2px;background:var(--accent)}
+    h1{
+      font-family:"Barlow Condensed",sans-serif;
+      font-size:clamp(68px,9vw,132px);line-height:.82;
+      text-transform:uppercase;letter-spacing:-2px;font-weight:900;
+    }
+    h1 em{font-style:normal;color:var(--accent)}
+    .hero-copy{max-width:540px;color:#c2c2c2;margin:28px 0 34px;font-size:16px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      min-height:50px;padding:0 22px;border:1px solid transparent;
+      font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;
+      transition:.25s;cursor:pointer;
+    }
+    .btn-primary{background:var(--accent);color:#fff}
+    .btn-primary:hover{background:#ff674a;transform:translateY(-2px)}
+    .btn-outline{border-color:rgba(255,255,255,.25);color:#fff;background:rgba(255,255,255,.03)}
+    .btn-outline:hover{border-color:#fff;background:#fff;color:#111}
+    .hero-stats{
+      display:flex;gap:34px;margin-top:55px;padding-top:24px;border-top:1px solid var(--line)
+    }
+    .stat strong{font-family:"Barlow Condensed";font-size:34px;display:block;line-height:1}
+    .stat span{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:1.5px}
+
+    /* TICKER */
+    .ticker{background:var(--accent);color:#0a0a0a;overflow:hidden;white-space:nowrap}
+    .ticker-track{
+      display:flex;width:max-content;animation:scroll 22s linear infinite;
+      font-family:"Barlow Condensed";font-size:23px;text-transform:uppercase;
+      letter-spacing:2px;font-weight:800;padding:10px 0;
+    }
+    .ticker-track span{margin:0 22px}
+    @keyframes scroll{to{transform:translateX(-50%)}}
+
+    /* SECTIONS */
+    section{padding:110px 0}
+    .section-head{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:48px}
+    .section-kicker{color:var(--accent);font-size:11px;text-transform:uppercase;letter-spacing:3px;font-weight:800;margin-bottom:12px}
+    h2{
+      font-family:"Barlow Condensed";font-size:clamp(48px,6vw,78px);
+      text-transform:uppercase;line-height:.9;letter-spacing:-1px
+    }
+    .section-head p{max-width:390px;color:#929292;font-size:14px}
+
+    /* SERVICES */
+    .service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .service{
+      position:relative;min-height:300px;overflow:hidden;
+      background:#111;border:1px solid var(--line)
+    }
+    .service img{height:100%;position:absolute;inset:0;transition:.6s;filter:brightness(.55)}
+    .service:hover img{transform:scale(1.06);filter:brightness(.7)}
+    .service::after{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(0deg,rgba(0,0,0,.92),rgba(0,0,0,.06) 75%)
+    }
+    .service-content{position:absolute;z-index:2;bottom:0;left:0;padding:28px}
+    .service-number{font-family:"Barlow Condensed";font-size:18px;color:var(--accent);font-weight:800}
+    .service h3{font-family:"Barlow Condensed";font-size:35px;text-transform:uppercase;line-height:1;margin:6px 0 8px}
+    .service p{color:#aaa;font-size:12px;max-width:310px}
+
+    /* SPLIT */
+    .split{display:grid;grid-template-columns:1fr 1fr;min-height:600px}
+    .split-image{position:relative;min-height:500px;overflow:hidden}
+    .split-image img{height:100%;filter:grayscale(.35) contrast(1.1)}
+    .split-image::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 50%,#101010 100%)}
+    .split-copy{background:#101010;padding:70px 8%}
+    .feature-list{margin-top:34px;display:grid;gap:22px}
+    .feature{display:grid;grid-template-columns:42px 1fr;gap:15px}
+    .feature-icon{
+      width:42px;height:42px;border:1px solid rgba(255,75,43,.5);
+      display:grid;place-items:center;color:var(--accent);font-weight:900
+    }
+    .feature h3{font-size:14px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+    .feature p{color:#858585;font-size:12px}
+
+    /* SHOWCASE */
+    .showcase{display:grid;grid-template-columns:1.35fr .65fr;gap:14px}
+    .showcase .big{height:590px}
+    .showcase .small{height:288px}
+    .showcase-item{overflow:hidden;position:relative;background:#111}
+    .showcase-item img{height:100%;transition:.5s;filter:saturate(.75)}
+    .showcase-item:hover img{transform:scale(1.04)}
+    .showcase-label{position:absolute;left:20px;bottom:20px;font-family:"Barlow Condensed";font-size:25px;text-transform:uppercase}
+
+    /* CTA */
+    .cta{
+      position:relative;overflow:hidden;background:#111;border:1px solid var(--line);
+      padding:70px 7%;display:flex;align-items:center;justify-content:space-between;gap:30px
+    }
+    .cta::before{
+      content:"";position:absolute;width:480px;height:480px;right:-170px;top:-230px;
+      background:radial-gradient(circle,rgba(255,75,43,.3),transparent 68%)
+    }
+    .cta h2{max-width:700px}
+    .cta p{color:#8f8f8f;max-width:600px;margin-top:14px;font-size:14px}
+    .cta .btn{position:relative;z-index:1;white-space:nowrap}
+
+    /* CONTACT */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .contact-card{background:#111;border:1px solid var(--line);padding:34px}
+    .contact-card h3{font-family:"Barlow Condensed";font-size:32px;text-transform:uppercase;margin-bottom:22px}
+    .contact-row{display:flex;gap:15px;padding:17px 0;border-bottom:1px solid var(--line)}
+    .contact-row:last-child{border-bottom:0}
+    .contact-row b{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#777;width:80px}
+    .contact-row span,.contact-row a{font-size:13px;color:#ddd}
+    .hours{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+    .day{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:12px}
+    .day span:first-child{color:#888}.day span:last-child{color:#eee}
+    .map{
+      min-height:100%;background:
+        linear-gradient(rgba(10,10,10,.72),rgba(10,10,10,.72)),
+        url("https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1400&q=80") center/cover;
+      display:flex;align-items:center;justify-content:center;border:1px solid var(--line)
+    }
+    .map-box{text-align:center;background:rgba(10,10,10,.84);padding:30px;border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(8px)}
+    .map-box strong{display:block;font-family:"Barlow Condensed";font-size:30px;text-transform:uppercase}
+    .map-box small{display:block;color:#999;margin:6px 0 20px}
+
+    /* FOOTER */
+    footer{border-top:1px solid var(--line);padding:30px 0;color:#777;font-size:11px}
+    .footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center}
+    .footer-brand{font-family:"Barlow Condensed";font-size:20px;color:#eee;letter-spacing:1px}
+
+    /* MOBILE */
+    @media(max-width:900px){
+      .nav-links{position:fixed;top:78px;left:0;right:0;background:#0b0b0b;border-bottom:1px solid var(--line);display:none;flex-direction:column;padding:25px}
+      .nav-links.open{display:flex}
+      .nav-links a{font-size:15px}
+      .nav-cta{display:none}.menu-btn{display:block}
+      .service-grid{grid-template-columns:1fr}
+      .service{min-height:330px}
+      .split,.contact-grid,.showcase{grid-template-columns:1fr}
+      .split-image{min-height:430px}
+      .showcase .big,.showcase .small{height:360px}
+      .cta{display:block}.cta .btn{margin-top:25px}
+      .section-head{display:block}.section-head p{margin-top:18px}
+    }
+    @media(max-width:600px){
+      .container{width:min(calc(100% - 28px),var(--max))}
+      .nav-inner{height:68px}
+      .nav-links{top:68px}
+      .hero-content{padding:125px 0 55px}
+      h1{font-size:65px}
+      .hero-copy{font-size:14px}
+      .hero-stats{gap:20px}
+      .stat strong{font-size:28px}
+      section{padding:75px 0}
+      .split-copy{padding:55px 25px}
+      .contact-card{padding:24px}
+      .hours{grid-template-columns:1fr}
+      .footer-inner{display:block}.footer-inner div+div{margin-top:10px}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#home" class="brand" aria-label="The Metal Fit Gym home">
+        <div class="brand-mark">M</div>
+        <div class="brand-text">
+          <strong>Metal Fit</strong>
+          <span>Gym • Faridabad</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#training">Training</a>
+        <a href="#facility">Facility</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-cta" href="tel:+919971580467">Call Now</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <div class="eyebrow">Sector 21C • Faridabad</div>
+        <h1>Train<br><em>Metal.</em><br>Become<br>Strong.</h1>
+        <p class="hero-copy">
+          A serious training environment for people who want to build strength,
+          improve fitness and show up consistently. Your next level starts with one workout.
+        </p>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="tel:+919971580467">Start Your Journey →</a>
+          <a class="btn btn-outline" target="_blank" rel="noopener"
+             href="https://www.google.com/maps/search/?api=1&query=The%20Metal%20Fit%20Gym%2C%20SCO-141%2C%20Sector%2021C%2C%20Faridabad%2C%20Haryana%20121001">
+            Get Directions
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat"><strong>5:30</strong><span>AM Opening</span></div>
+          <div class="stat"><strong>10 PM</strong><span>Closing</span></div>
+          <div class="stat"><strong>7 DAYS</strong><span>Open Weekly</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker">
+      <div class="ticker-track">
+        <span>Strength</span><span>Discipline</span><span>Consistency</span><span>Progress</span>
+        <span>Strength</span><span>Discipline</span><span>Consistency</span><span>Progress</span>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">01 / The mindset</div>
+            <h2>Built for<br>people who train.</h2>
+          </div>
+          <p>
+            Forget complicated. Show up, train with purpose and keep improving.
+            The Metal Fit Gym is built around a straightforward fitness mindset.
+          </p>
+        </div>
+
+        <div class="service-grid" id="training">
+          <article class="service">
+            <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=1000&q=85" alt="Strength training">
+            <div class="service-content">
+              <div class="service-number">01</div>
+              <h3>Strength</h3>
+              <p>Build a stronger foundation through focused resistance and strength work.</p>
+            </div>
+          </article>
+
+          <article class="service">
+            <img src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=1000&q=85" alt="Cardio training">
+            <div class="service-content">
+              <div class="service-number">02</div>
+              <h3>Conditioning</h3>
+              <p>Keep your engine working with training that supports overall fitness.</p>
+            </div>
+          </article>
+
+          <article class="service">
+            <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1000&q=85" alt="Personal fitness training">
+            <div class="service-content">
+              <div class="service-number">03</div>
+              <h3>Progress</h3>
+              <p>Turn consistent sessions into measurable progress toward your goals.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="facility" style="padding-top:20px">
+      <div class="container">
+        <div class="split">
+          <div class="split-image">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1400&q=85" alt="Modern gym interior">
+          </div>
+
+          <div class="split-copy">
+            <div class="section-kicker">02 / The facility</div>
+            <h2>A space<br>to work.</h2>
+            <p style="color:#929292;margin-top:20px;font-size:14px">
+              Come in with a goal. Leave knowing you put the work in.
+              From strength sessions to general fitness, make your training time count.
+            </p>
+
+            <div class="feature-list">
+              <div class="feature">
+                <div class="feature-icon">01</div>
+                <div>
+                  <h3>Serious Training Environment</h3>
+                  <p>Focused atmosphere designed around getting your session done.</p>
+                </div>
+              </div>
+              <div class="feature">
+                <div class="feature-icon">02</div>
+                <div>
+                  <h3>For Different Fitness Levels</h3>
+                  <p>Whether you're starting out or already training, keep progressing.</p>
+                </div>
+              </div>
+              <div class="feature">
+                <div class="feature-icon">03</div>
+                <div>
+                  <h3>Convenient Local Location</h3>
+                  <p>SCO-141, Market, Sector 21C, Faridabad, Haryana.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding-top:20px">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">03 / Inside the grind</div>
+            <h2>Train hard.<br>Look sharp.</h2>
+          </div>
+          <p>Replace these demo images with the gym's own interior, equipment and member-training photos before launch.</p>
+        </div>
+
+        <div class="showcase">
+          <div class="showcase-item big">
+            <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=1400&q=85" alt="Gym workout">
+            <div class="showcase-label">No shortcuts.</div>
+          </div>
+          <div style="display:grid;gap:14px">
+            <div class="showcase-item small">
+              <img src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=900&q=85" alt="Fitness equipment">
+              <div class="showcase-label">Put in work.</div>
+            </div>
+            <div class="showcase-item small">
+              <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=900&q=85" alt="Fitness training">
+              <div class="showcase-label">Keep going.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding-top:20px">
+      <div class="container">
+        <div class="cta">
+          <div>
+            <div class="section-kicker">Ready?</div>
+            <h2>Your strongest<br>version starts here.</h2>
+            <p>Call the gym to ask about membership, current plans, trial options and training availability.</p>
+          </div>
+          <a class="btn btn-primary" href="tel:+919971580467">Call +91 99715 80467 →</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" style="padding-top:30px">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">04 / Visit us</div>
+            <h2>Find your<br>training ground.</h2>
+          </div>
+          <p>Conveniently located in Sector 21C, Faridabad. Call ahead for membership details and availability.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>Gym Details</h3>
+
+            <div class="contact-row">
+              <b>Address</b>
+              <span>SCO-141, Market, Sector 21C, Faridabad, Haryana 121001</span>
+            </div>
+
+            <div class="contact-row">
+              <b>Phone</b>
+              <a href="tel:+919971580467">+91 99715 80467</a>
+            </div>
+
+            <div class="contact-row">
+              <b>Instagram</b>
+              <a target="_blank" rel="noopener" href="https://www.instagram.com/themetalfit_21c/">@themetalfit_21c</a>
+            </div>
+
+            <div class="contact-row" style="display:block">
+              <b style="display:block;margin-bottom:10px">Hours</b>
+              <div class="hours">
+                <div class="day"><span>Mon</span><span>5:30 AM – 10 PM</span></div>
+                <div class="day"><span>Tue</span><span>5:30 AM – 10 PM</span></div>
+                <div class="day"><span>Wed</span><span>5:30 AM – 10 PM</span></div>
+                <div class="day"><span>Thu</span><span>5:30 AM – 10 PM</span></div>
+                <div class="day"><span>Fri</span><span>5:30 AM – 10 PM</span></div>
+                <div class="day"><span>Sat</span><span>5:30 AM – 10 PM</span></div>
+                <div class="day"><span>Sun</span><span>2 PM – 8 PM</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="map">
+            <div class="map-box">
+              <strong>Sector 21C</strong>
+              <small>Faridabad, Haryana</small>
+              <a class="btn btn-primary" target="_blank" rel="noopener"
+                 href="https://www.google.com/maps/search/?api=1&query=The%20Metal%20Fit%20Gym%2C%20SCO-141%2C%20Sector%2021C%2C%20Faridabad%2C%20Haryana%20121001">
+                Open in Google Maps
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand">THE METAL FIT GYM</div>
+      <div>© <span id="year"></span> The Metal Fit Gym. Demo website concept.</div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      menuBtn.textContent = navLinks.classList.contains('open') ? '×' : '☰';
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuBtn.textContent = '☰';
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
